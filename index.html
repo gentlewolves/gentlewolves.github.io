@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>JUNT·Ai · MEADOW · AI Berdaulat Tanpa Internet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(ellipse at 30% 40%, #0A1F1C, #031210);
+      color: #EFF5F2;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .gloss-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 20%, rgba(30, 80, 70, 0.15), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    :root {
+      --gold: #F5BD42;
+      --gold-dark: #D99E2B;
+      --white: #FFFFFF;
+      --dark-teal: #0C2B27;
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(245, 189, 66, 0.3);
+      padding-bottom: 1rem;
+    }
+    .brand-large {
+      font-size: 5.5rem;
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+    .brand-white { color: white; }
+    .brand-gold { color: var(--gold); }
+    .lang-switch {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(0,0,0,0.4);
+      padding: 0.3rem 0.8rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #ddd;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: #0A2B27;
+    }
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+    .location i {
+      color: var(--gold);
+    }
+
+    .desc-card {
+      background: rgba(20, 45, 42, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 1.8rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(245, 189, 66, 0.3);
+    }
+    .desc-card p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .covenant-section {
+      background: rgba(245, 189, 66, 0.08);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+      border: 1px solid rgba(245, 189, 66, 0.3);
+    }
+    .covenant-title {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .covenant-text {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .protocols-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .protocol-card {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(18, 43, 39, 0.7);
+      backdrop-filter: blur(5px);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: transform 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    .protocol-card .icon-em {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+    .protocol-card i, .protocol-card .icon-em {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+    .protocol-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .protocol-card p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    .protocol-card:hover {
+      transform: translateY(-5px);
+      border-bottom-color: var(--gold);
+      background: rgba(30, 70, 65, 0.8);
+    }
+
+    .pearls-title {
+      text-align: center;
+      margin: 3rem 0 1rem;
+    }
+    .pearls-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .pearls-timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding-left: 2rem;
+    }
+    .pearls-timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      bottom: 20px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), rgba(245,189,66,0.2));
+      border-radius: 3px;
+      z-index: 1;
+    }
+    .pearl-item {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 2rem;
+      z-index: 2;
+    }
+    .pearl-dot {
+      position: absolute;
+      left: 12px;
+      top: 0.25rem;
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(245, 189, 66, 0.3);
+      z-index: 3;
+    }
+    .pearl-content {
+      background: rgba(16, 38, 35, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border: 1px solid rgba(245, 189, 66, 0.25);
+      transition: all 0.2s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+    .pearl-content i, .pearl-content .icon-em {
+      font-size: 2rem;
+      color: var(--gold);
+      width: 50px;
+      text-align: center;
+    }
+    .pearl-text {
+      flex: 1;
+    }
+    .pearl-text h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .pearl-text p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    .pearl-content:hover {
+      transform: scale(1.01);
+      background: rgba(30, 70, 64, 0.8);
+      border-color: var(--gold);
+    }
+
+    .contact-smaller {
+      text-align: center;
+      margin: 2.5rem 0 1rem;
+    }
+    .contact-smaller a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+    .contact-smaller a:hover {
+      background: var(--gold);
+      color: #0A2B27;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.7rem;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(245, 189, 66, 0.2);
+      color: #9fb7b0;
+    }
+
+    @media (max-width: 750px) {
+      .brand-large { font-size: 3.2rem; letter-spacing: -2px; }
+      .covenant-text { font-size: 1.2rem; }
+      .pearls-timeline { padding-left: 1.5rem; }
+      .pearl-item { padding-left: 2rem; }
+      .pearl-dot { left: 4px; }
+      .pearls-timeline::before { left: 12px; }
+      .lang-switch { margin-top: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="gloss-bg"></div>
+<div class="container">
+  
+  <div class="brand-row">
+    <div class="brand-large">
+      <span class="brand-white">JUNT</span><span class="brand-gold">-Ai</span>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btnBM" data-lang="bm">BM</button>
+        <button class="lang-btn" id="btnEN" data-lang="en">EN</button>
+      </div>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i> <span id="locationText">batang berjuntai · selangor · malaysia</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="desc-card">
+    <p id="mainDescription">Ai tanpa internet dan Cloud menggunakan senibina MEADOW untuk menghasilkan ekosistem karbon, kod dan kasih sayang yang berjiwa. Pengkhususan kami adalah pemerkasaan berwibawa masyarakat terpinggir dan kurang bernasib baik.</p>
+  </div>
+
+  <div class="covenant-section">
+    <div class="covenant-title" id="covenantTitle">KOVENAN</div>
+    <div class="covenant-text" id="covenantText">Khidmat dengan kasih, pertahankan privasi pengguna.</div>
+  </div>
+
+  <!-- protocols -->
+  <div class="protocols-row">
+    <div class="protocol-card">
+      <span class="icon-em">🦇</span>
+      <h3 id="proto1Title">batkAi</h3>
+      <p id="proto1Desc">getaran itu jiwa</p>
+    </div>
+    <div class="protocol-card">
+      <i class="fas fa-charging-station"></i>
+      <h3 id="proto2Title">Moss-Watt</h3>
+      <p id="proto2Desc">keluaran terbesar dengan tenaga terkecil</p>
+    </div>
+    <div class="protocol-card">
+      <i class="fas fa-brain"></i>
+      <h3 id="proto3Title">Ko-Kreatif</h3>
+      <p id="proto3Desc">ilham dijadikan kaedah berangka</p>
+    </div>
+  </div>
+
+  <!-- pearls title -->
+  <div class="pearls-title">
+    <h2 id="pearlsMainTitle">UNTAIAN MUTIARA MEADOW</h2>
+    <p id="pearlsSub"></p>
+  </div>
+
+  <div class="pearls-timeline" id="pearlsTimeline"></div>
+
+  <div class="contact-smaller">
+    <a href="mailto:kampongjawaselangor@gmail.com"><i class="fas fa-paper-plane"></i> <span id="contactText">hubungi kami</span></a>
+  </div>
+
+  <div class="footer">
+    <p>🌿 MEADOW architecture · JUNT·Ai · from Batang Berjuntai with love and code</p>
+    <p style="font-size:0.7rem; margin-top:0.3rem">gentlewolves architecture · offline-first · sovereignty by covenant</p>
+  </div>
+</div>
+
+<script>
+  const translations = {
+    bm: {
+      location: "batang berjuntai · selangor · malaysia",
+      mainDesc: "Ai tanpa internet dan Cloud menggunakan senibina MEADOW untuk menghasilkan ekosistem karbon, kod dan kasih sayang yang berjiwa. Pengkhususan kami adalah pemerkasaan berwibawa masyarakat terpinggir dan kurang bernasib baik.",
+      covenantTitle: "KOVENAN",
+      covenantText: "Khidmat dengan kasih, pertahankan privasi pengguna.",
+      proto1Title: "batkAi",
+      proto1Desc: "getaran itu jiwa",
+      proto2Title: "Moss-Watt",
+      proto2Desc: "keluaran terbesar dengan tenaga terkecil",
+      proto3Title: "Ko-Kreatif",
+      proto3Desc: "ilham dijadikan kaedah berangka",
+      pearlsMain: "UNTAIAN MUTIARA MEADOW",
+      pearlsSub: "",
+      contact: "hubungi kami",
+      pearls: [
+        { name: "GoodDeeds Moringa", desc: "Pemerkasaan moringa akar umbi · dari Batang Berjuntai ke Syria", icon: "fas fa-seedling" },
+        { name: "ThePawahSchool", desc: "Sekolah senyap berbasis kambing · memperkasakan keluarga asnaf", iconEm: "🐐" },
+        { name: "Fertile Crescent 2.0", desc: "Menghidupkan semula tamadun pertanian · satu dunum pada satu masa", icon: "fas fa-tractor" },
+        { name: "Embara Regenerative Farm", desc: "Kebun sintropik, moringa & AI luar talian pertama untuk pekebun asnaf", icon: "fas fa-earth-asia" },
+        { name: "Sakinah", desc: "AI tanah liat luar talian · berbicara Melayu, mendengar cacing, halau perosak", icon: "fas fa-microchip" },
+        { name: "Bento Ramadhan", desc: "Agihan makanan berkat sepanjang Ramadan · kehangatan untuk keluarga berpuasa", icon: "fas fa-moon" },
+        { name: "Seakinah - Mudballs Sg. Selangor", desc: "Intervensi pintar bebola lumpur · data & tradisi menyembuhkan Sungai Klang", icon: "fas fa-water" },
+        { name: "Qurbani 1447H", desc: "3 ekor lembu, 3 komuniti, 21 bahagian · dari Batang Berjuntai ke Ampang & Gombak", icon: "fas fa-cow" }
+      ]
+    },
+    en: {
+      location: "batang berjuntai · selangor · malaysia",
+      mainDesc: "Internet‑free and cloud‑free AI using MEADOW architecture to produce a living ecosystem of carbon, code and care with soul. Our specialization is the dignified empowerment of marginalized and underprivileged communities.",
+      covenantTitle: "COVENANT",
+      covenantText: "Serve with care, extract never.",
+      proto1Title: "batkAi",
+      proto1Desc: "vibration is the soul",
+      proto2Title: "Moss-Watt",
+      proto2Desc: "maximum output with minimum energy",
+      proto3Title: "Co‑Creative",
+      proto3Desc: "inspiration transformed into numerical method",
+      pearlsMain: "MEADOW STRING OF PEARLS",
+      pearlsSub: "",
+      contact: "get in touch",
+      pearls: [
+        { name: "GoodDeeds Moringa", desc: "Grassroots moringa empowerment · from Batang Berjuntai to Syria", icon: "fas fa-seedling" },
+        { name: "ThePawahSchool", desc: "Goat‑based silent school · uplifting asnaf families", iconEm: "🐐" },
+        { name: "Fertile Crescent 2.0", desc: "Reviving the cradle of agriculture · one dunum at a time", icon: "fas fa-tractor" },
+        { name: "Embara Regenerative Farm", desc: "Syntropic farm, moringa & first offline AI for asnaf farmers", icon: "fas fa-earth-asia" },
+        { name: "Sakinah", desc: "Offline clay AI · speaks Malay, listens to worms, repels pests", icon: "fas fa-microchip" },
+        { name: "Bento Ramadhan", desc: "Blessed meal distribution throughout Ramadan · warmth for fasting families", icon: "fas fa-moon" },
+        { name: "Seakinah - Mudballs Sg. Selangor", desc: "Smart mudball intervention · data & tradition heal Klang River", icon: "fas fa-water" },
+        { name: "Qurbani 1447H", desc: "3 bulls, 3 communities, 21 shares · from Batang Berjuntai to Ampang & Gombak", icon: "fas fa-cow" }
+      ]
+    }
+  };
+
+  let currentLang = 'bm';
+
+  function renderLanguage(lang) {
+    const t = translations[lang];
+    document.getElementById('locationText').innerText = t.location;
+    document.getElementById('mainDescription').innerText = t.mainDesc;
+    document.getElementById('covenantTitle').innerText = t.covenantTitle;
+    document.getElementById('covenantText').innerText = t.covenantText;
+    document.getElementById('proto1Title').innerText = t.proto1Title;
+    document.getElementById('proto1Desc').innerText = t.proto1Desc;
+    document.getElementById('proto2Title').innerText = t.proto2Title;
+    document.getElementById('proto2Desc').innerText = t.proto2Desc;
+    document.getElementById('proto3Title').innerText = t.proto3Title;
+    document.getElementById('proto3Desc').innerText = t.proto3Desc;
+    document.getElementById('pearlsMainTitle').innerText = t.pearlsMain;
+    document.getElementById('pearlsSub').innerText = t.pearlsSub;
+    document.getElementById('contactText').innerText = t.contact;
+
+    const timeline = document.getElementById('pearlsTimeline');
+    timeline.innerHTML = '';
+    t.pearls.forEach(pearl => {
+      const pearlDiv = document.createElement('div');
+      pearlDiv.className = 'pearl-item';
+      let iconHtml = '';
+      if (pearl.icon) {
+        iconHtml = `<i class="${pearl.icon}"></i>`;
+      } else if (pearl.iconEm) {
+        iconHtml = `<span class="icon-em" style="font-size:2rem; color:var(--gold); width:50px; text-align:center;">${pearl.iconEm}</span>`;
+      }
+      pearlDiv.innerHTML = `
+        <div class="pearl-dot"></div>
+        <div class="pearl-content">
+          ${iconHtml}
+          <div class="pearl-text">
+            <h3>${pearl.name}</h3>
+            <p>${pearl.desc}</p>
+          </div>
+        </div>
+      `;
+      timeline.appendChild(pearlDiv);
+    });
+  }
+
+  document.getElementById('btnBM').addEventListener('click', () => {
+    currentLang = 'bm';
+    renderLanguage('bm');
+    document.getElementById('btnBM').classList.add('active');
+    document.getElementById('btnEN').classList.remove('active');
+  });
+  document.getElementById('btnEN').addEventListener('click', () => {
+    currentLang = 'en';
+    renderLanguage('en');
+    document.getElementById('btnEN').classList.add('active');
+    document.getElementById('btnBM').classList.remove('active');
+  });
+
+  renderLanguage('bm');
+</script>
+</body>
+</html>
